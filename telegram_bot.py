@@ -9,6 +9,9 @@ CHAT_ID = os.getenv("CHAT_ID")
 
 
 def send_message(text):
+    print("BOT_TOKEN exists:", BOT_TOKEN is not None)
+    print("CHAT_ID:", CHAT_ID)
+
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
 
     response = requests.post(
@@ -19,5 +22,8 @@ def send_message(text):
             "parse_mode": "Markdown"
         }
     )
+
+    print("Status Code:", response.status_code)
+    print("Response:", response.text)
 
     return response.json()
