@@ -1,5 +1,10 @@
-venv/
-cache/
+# Secrets
 .env
+
+# Python
+venv/
 __pycache__/
 *.pyc
+
+# FastF1 cache
+cache/
