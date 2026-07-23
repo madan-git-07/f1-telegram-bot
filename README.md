@@ -30,7 +30,7 @@ main.py is the entry point. It pulls a piece of the briefing from each module an
 
 2. Install dependencies , you can do it manually or also by the given command and paste it in your terminal.  
 
-  `pip install -r requirements.txt`
+   `pip install -r requirements.txt`
 
 
 3. Create a Telegram bot:
