@@ -17,6 +17,7 @@ schedule.py       → next race weekend + session times (IST)
 standings.py      → driver standings + constructor standings
 news.py           → latest headlines (RSS)
 telegram_bot.py   → sends the combined message to Telegram
+
 Project structure
 .
 ├── main.py                       # Entry point — assembles the daily brief and sends it
@@ -29,6 +30,7 @@ Project structure
 ├── requirements.txt                # Python dependencies
 ├── .github/workflows/daily.yml     # GitHub Actions workflow that runs the bot on a schedule
 └── .gitignore
+
 Setup
 1. Clone the repo using the given command and paste it in your terminal
 
