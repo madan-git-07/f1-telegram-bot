@@ -1,15 +1,16 @@
-F1 Telegram Bot
+# F1 Telegram Bot
 
 A Python bot that sends a daily Formula 1 briefing to a Telegram chat — the next race weekend's session schedule (in IST), current driver and constructor standings, and the latest headlines from Formula1.com. It's designed to run automatically via GitHub Actions, twice a day.
 
-Features
-Next race schedule — pulls the upcoming Grand Prix weekend from FastF1's official schedule data and converts every session time to IST.
-Driver standings — current championship driver standings (top 11), via the Jolpica-F1 Ergast-compatible API.
-Constructor standings — current constructors' championship table (top 11).
-Latest news — top 5 headlines from Formula1.com's RSS feed, with links.
-Telegram delivery — combines everything into one Markdown-formatted message and posts it via the Telegram Bot API.
-Scheduled automation — a GitHub Actions workflow triggers the bot on a cron schedule, no server required.
-How it works
+## Features:
+1. Next race schedule — pulls the upcoming Grand Prix weekend from FastF1's official schedule data and converts every session time to IST.
+2. Driver standings — current championship driver standings (top 11), via the Jolpica-F1 Ergast-compatible API.
+3.Constructor standings — current constructors' championship table (top 11).
+4. Latest news — top 5 headlines from Formula1.com's RSS feed, with links.
+5. Telegram delivery — combines everything into one Markdown-formatted message and posts it via the Telegram Bot API.
+6. Scheduled automation — a GitHub Actions workflow triggers the bot on a cron schedule, no server required.
+
+## How it works:
 
 main.py is the entry point. It pulls a piece of the briefing from each module and stitches them into a single message:
 
