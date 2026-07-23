@@ -48,23 +48,23 @@ main.py is the entry point. It pulls a piece of the briefing from each module an
 
 3. Create a Telegram bot
 
-Message @BotFather on Telegram and run /newbot, following the prompts.
-Copy the bot token BotFather gives you.
-Add the bot to the chat, group, or channel you want the briefing posted to, and get the corresponding chat ID (e.g. via @userinfobot or the Bot API's getUpdates endpoint).
+   Message @BotFather on Telegram and run /newbot, following the prompts.
+   Copy the bot token BotFather gives you.
+   Add the bot to the chat, group, or channel you want the briefing posted to, and get the corresponding chat ID (e.g. via @userinfobot or the Bot API's getUpdates endpoint).
 
 4. Configure environment variables
 
-Create a .env file in the project root:
+   Create a .env file in the project root:
 
-BOT_TOKEN=your_telegram_bot_token
-CHAT_ID=your_chat_id
+   BOT_TOKEN=your_telegram_bot_token
+   CHAT_ID=your_chat_id
 
 5. Run it
 
 
-`python main.py`
+   `python main.py`
 
-This fetches the schedule, standings, and news, then sends the combined brief to your configured Telegram chat.
+    This fetches the schedule, standings, and news, then sends the combined brief to your configured Telegram chat.
 
 ## Automating with GitHub Actions:
 
