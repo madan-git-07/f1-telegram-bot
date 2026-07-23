@@ -67,7 +67,6 @@ To enable this on your own fork or copy of the repo, add BOT_TOKEN and CHAT_ID a
 
 See requirements.txt for the full pinned list; the main ones are:
 
-### Package	Purpose:
 * fastf1	Official/historical F1 session schedules & data
 * requests	HTTP calls to the Telegram API and standings API
 * feedparser	Parses the F1 news RSS feed
