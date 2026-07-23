@@ -14,36 +14,26 @@ A Python bot that sends a daily Formula 1 briefing to a Telegram chat — the ne
 
 main.py is the entry point. It pulls a piece of the briefing from each module and stitches them into a single message:
 
-* schedule.py       → next race weekend + session times (IST)
-* standings.py      → driver standings + constructor standings
-* news.py           → latest headlines (RSS)
-* telegram_bot.py   → sends the combined message to Telegram
-
-## Project structure
-.
-├── main.py                       # Entry point — assembles the daily brief and sends it
-├── schedule.py                   # Next race weekend session times (FastF1), converted to IST
-├── standings.py                  # Driver & constructor standings (Jolpica-F1 / Ergast-compatible API)
-├── news.py                       # Latest F1 headlines from the official RSS feed
-├── telegram_bot.py                # Sends the final message via the Telegram Bot API
-├── config.py                      # Loads BOT_TOKEN / CHAT_ID from environment variables
-├── formatter.py                   # Currently empty — reserved for future message-formatting helpers
-├── requirements.txt                # Python dependencies
-├── .github/workflows/daily.yml     # GitHub Actions workflow that runs the bot on a schedule
-└── .gitignore
+* schedule.py       → Next race weekend session times (FastF1), converted to IST
+* standings.py      → Driver & constructor standings (Jolpica-F1 / Ergast-compatible API)
+* news.py           → Latest F1 headlines from the official RSS feed
+* telegram_bot.py   → Sends the final message via the Telegram Bot API
+* config.py         → Loads BOT_TOKEN / CHAT_ID from environment variables
+* formatter.py      → Currently empty — reserved for future message-formatting helpers
+* requirements.txt  → Python dependencies
 
 ## Setup
 1. Clone the repo using the given command and paste it in your terminal
 
 
-`git clone https://github.com/madan-git-07/f1-telegram-bot.git`
-`cd f1-telegram-bot`
+  `git clone https://github.com/madan-git-07/f1-telegram-bot.git`
+  `cd f1-telegram-bot`
 
 
 2. Install dependencies , you can do it manually or also by the given command and paste it in your terminal
 
 
-`pip install -r requirements.txt`
+  `pip install -r requirements.txt`
 
 
 3. Create a Telegram bot
