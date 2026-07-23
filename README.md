@@ -24,9 +24,7 @@ main.py is the entry point. It pulls a piece of the briefing from each module an
 
 ## Setup
 1. Clone the repo using the given command and paste it in your terminal
-
-
-  `git clone https://github.com/madan-git-07/f1-telegram-bot.git`
+  `git clone https://github.com/madan-git-07/f1-telegram-bot.git`  
   `cd f1-telegram-bot`
 
 
@@ -38,16 +36,16 @@ main.py is the entry point. It pulls a piece of the briefing from each module an
 
 3. Create a Telegram bot
 
-   Message @BotFather on Telegram and run /newbot, following the prompts.
-   Copy the bot token BotFather gives you.
+   Message @BotFather on Telegram and run /newbot, following the prompts.  
+   Copy the bot token BotFather gives you.  
    Add the bot to the chat, group, or channel you want the briefing posted to, and get the corresponding chat ID (e.g. via @userinfobot or the Bot API's getUpdates endpoint).
 
 4. Configure environment variables
 
-   Create a .env file in the project root:
+   Create a .env file in the project root:  
 
-   BOT_TOKEN=your_telegram_bot_token
-   CHAT_ID=your_chat_id
+   BOT_TOKEN=your_telegram_bot_token  
+   CHAT_ID=your_chat_id  
 
 5. Run it
 
