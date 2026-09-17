@@ -1,81 +1,132 @@
 # F1 Telegram Bot
 
-A Python bot that sends a daily Formula 1 briefing to a Telegram chat — the next race weekend's session schedule (in IST), current driver and constructor standings, and the latest headlines from Formula1.com. It's designed to run automatically via GitHub Actions, twice a day.
+A Python bot that sends a daily Formula 1 briefing to a Telegram chat. It collects the next race weekend schedule in IST, current driver and constructor standings, and the latest F1 headlines, then posts everything as a single Telegram message.
 
-## Features:
-1. Next race schedule — pulls the upcoming Grand Prix weekend from FastF1's official schedule data and converts every session time to IST.
-2. Driver standings — current championship driver standings (top 11), via the Jolpica-F1 Ergast-compatible API.
-3.Constructor standings — current constructors' championship table (top 11).
-4. Latest news — top 5 headlines from Formula1.com's RSS feed, with links.
-5. Telegram delivery — combines everything into one Markdown-formatted message and posts it via the Telegram Bot API.
-6. Scheduled automation — a GitHub Actions workflow triggers the bot on a cron schedule, no server required.
+This project is designed to run locally or automatically via GitHub Actions with no dedicated server required.
 
-## How it works:
+## Features
 
-main.py is the entry point. It pulls a piece of the briefing from each module and stitches them into a single message:
+- Next race weekend schedule
+  - Pulls the upcoming Grand Prix weekend from FastF1
+  - Converts all session times to IST (Asia/Kolkata)
+- Driver standings
+  - Displays the current championship table from a Jolpica-F1 / Ergast-compatible API
+- Constructor standings
+  - Shows the latest constructor rankings
+- Latest F1 news
+  - Fetches top headlines from the official Formula 1 RSS feed
+- Telegram delivery
+  - Combines all details into a Markdown-formatted message and sends it via Telegram Bot API
+- Scheduled automation
+  - Runs automatically via GitHub Actions on a cron schedule
 
-* schedule.py       → Next race weekend session times (FastF1), converted to IST
-* standings.py      → Driver & constructor standings (Jolpica-F1 / Ergast-compatible API)
-* news.py           → Latest F1 headlines from the official RSS feed
-* telegram_bot.py   → Sends the final message via the Telegram Bot API
-* config.py         → Loads BOT_TOKEN / CHAT_ID from environment variables
-* formatter.py      → Currently empty — reserved for future message-formatting helpers
-* requirements.txt  → Python dependencies
+## Project Structure
 
-## Setup
-1. Clone the repo using the given command and paste it in your terminal.
-  `git clone https://github.com/madan-git-07/f1-telegram-bot.git`  
-`cd f1-telegram-bot`
+- `main.py` — entry point for the bot
+- `schedule.py` — fetches and formats upcoming race session times
+- `standings.py` — gets driver and constructor standings
+- `news.py` — fetches latest F1 headlines
+- `telegram_bot.py` — sends the final message to Telegram
+- `config.py` — loads environment variables
+- `requirements.txt` — Python dependencies
+- `.github/workflows/daily.yml` — scheduled GitHub Action
 
+## Download and Clone
 
-2. Install dependencies , you can do it manually or also by the given command and paste it in your terminal.  
+Public download links:
 
-   `pip install -r requirements.txt`
+- Download ZIP: https://github.com/madan-git-07/f1-telegram-bot/archive/refs/heads/main.zip
+- Download TAR.GZ: https://github.com/madan-git-07/f1-telegram-bot/archive/refs/heads/main.tar.gz
+- Clone repository: `git clone https://github.com/madan-git-07/f1-telegram-bot.git`
 
+## Prerequisites
+
+- Python 3.9+
+- A Telegram bot token from @BotFather
+- A Telegram chat ID where the message should be posted
+- Internet access for fetching F1 data and news
+
+## Setup Instructions
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/madan-git-07/f1-telegram-bot.git
+   cd f1-telegram-bot
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 3. Create a Telegram bot:
 
-   Message @BotFather on Telegram and run /newbot, following the prompts.  
-   Copy the bot token BotFather gives you.  
-   Add the bot to the chat, group, or channel you want the briefing posted to, and get the corresponding chat ID (e.g. via @userinfobot or the Bot API's getUpdates endpoint).
+   - Open Telegram and message @BotFather
+   - Run `/newbot`
+   - Follow the instructions to create your bot
+   - Save the bot token you receive
+   - Add the bot to the target chat/group/channel
+   - Get the chat ID for that chat
 
 4. Configure environment variables:
 
-   Create a .env file in the project root:  
+   Create a `.env` file in the project root with:
 
-   BOT_TOKEN=your_telegram_bot_token  
-   CHAT_ID=your_chat_id  
+   ```env
+   BOT_TOKEN=your_telegram_bot_token
+   CHAT_ID=your_chat_id
+   ```
 
-5. Run it:
+   Example:
 
+   ```env
+   BOT_TOKEN=123456:ABCDEF...
+   CHAT_ID=-1001234567890
+   ```
 
-   `python main.py`
+5. Run the bot locally:
 
-    This fetches the schedule, standings, and news, then sends the combined brief to your configured Telegram chat.
+   ```bash
+   python main.py
+   ```
 
-## Automating with GitHub Actions:
+   The script fetches race information, standings, and news, then sends the combined briefing to your Telegram chat.
 
-The included workflow (.github/workflows/daily.yml) runs the bot automatically:
+## GitHub Actions Automation
 
-🕕 09:00 IST (03:30 UTC)
-🕕 18:00 IST (12:30 UTC)
-Can also be triggered manually from the Actions tab (workflow_dispatch)
+The repository includes a workflow that runs automatically on a schedule and can also be triggered manually.
 
-To enable this on your own fork or copy of the repo, add BOT_TOKEN and CHAT_ID as repository secrets under Settings → Secrets and variables → Actions. The workflow installs requirements.txt on a fresh ubuntu-latest runner (Python 3.12) and runs python main.py.
+Workflow details:
 
-## Key dependencies:
+- Runs at approximately 09:00 IST and 18:00 IST
+- Uses repository secrets for `BOT_TOKEN` and `CHAT_ID`
+- Can be started manually from the GitHub Actions tab
 
-See requirements.txt for the full pinned list; the main ones are:
+To enable it in your fork:
 
-* fastf1	Official/historical F1 session schedules & data
-* requests	HTTP calls to the Telegram API and standings API
-* feedparser	Parses the F1 news RSS feed
-* python-dotenv	Loads .env for local runs
-* pytz	UTC → IST timezone conversion
-* pandas, numpy, matplotlib	Pulled in as FastF1 dependencies
+1. Go to your GitHub repository
+2. Open Settings → Secrets and variables → Actions
+3. Add:
+   - `BOT_TOKEN`
+   - `CHAT_ID`
+4. Enable the workflow if needed
 
+## Notes
 
-### Notes:
-1. Driver and constructor standings currently display only the top 11 entries. You can change it for any no. of standings upto 22 (as there are 22 drivers in the grid) by changing [:11] from standings.py. But for Constructor Champiaoship don't change it to more than 11 (as there 11 11 teams). 
-2. Session times are hardcoded to convert to IST (Asia/Kolkata) in schedule.py — change the timezone there if you want a different local time.
-3. FastF1 caches schedule data locally in a cache/ folder, which is git-ignored.
+- The standings currently display the top 11 entries by default.
+- Session times are converted to IST by default in `schedule.py`.
+- FastF1 caches data locally in a `cache/` directory, which is ignored by git.
+
+## License
+
+This project is provided as-is for educational and personal use.
+
+## Contributing
+
+Pull requests and suggestions are welcome. If you improve the formatting, add new features, or fix bugs, feel free to contribute.
+
+## Support
+
+If you are running this bot and need help with setup, Telegram chat IDs, or workflow configuration, open an issue in this repository.
